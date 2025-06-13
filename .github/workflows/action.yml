@@ -1,0 +1,22 @@
+name: CI
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  check-semantics:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Checkout Configuration
+        uses: actions/checkout@v4
+
+      - name: Run
+        uses: GarnerCorp/build-actions/get-image-and-run-command@main
+        with:
+          image: "blob"
+          command: "blob"
