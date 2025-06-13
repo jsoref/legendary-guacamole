@@ -13,8 +13,9 @@ jobs:
       contents: read
     steps:
       - name: Run
-        uses: GarnerCorp/build-actions/get-image-and-run-command@main
+        uses: GarnerCorp/build-actions/get-image-and-run-command@image-runner
         with:
-          image: "blob"
-          command: "blob"
+          image: "busybox"
+          command: "echo 'hello there'"
           checkout: "true"
+          workload-identity-provider: "no"
