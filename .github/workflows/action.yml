@@ -12,10 +12,17 @@ jobs:
       id-token: write
       contents: read
     steps:
+      - name: google-github-actions/auth shim
+        run: |
+          : set outputs
+          (
+            echo CLOUDSDK_AUTH_CREDENTIAL_FILE_OVERRIDE=something
+            echo GOOGLE_APPLICATION_CREDENTIALS=something
+            echo GOOGLE_GHA_CREDS_PATH=something
+          ) >> "$GITHUB_ENV"
       - name: Run
         uses: GarnerCorp/build-actions/get-image-and-run-command@image-runner
         with:
-          image: "busybox"
+          image: "us-central1-docker.pkg.dev/imaginary-duck/there-is-no-duck:something"
           command: "echo 'hello there'"
           checkout: "true"
-          workload-identity-provider: "no"
